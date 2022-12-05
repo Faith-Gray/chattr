@@ -1,4 +1,4 @@
-import { Avatar } from "@mui/material";
+import { Avatar, Button } from "@mui/material";
 import { IconButton } from '@mui/material';
 import styled from "styled-components";
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
@@ -24,7 +24,12 @@ function Sidebar() {
 
         <Search>
           <SearchIcon/>
+          <SearchInput/>
         </Search>
+
+        <SidebarButton>
+          Start a New Chat
+        </SidebarButton>
     </Container>
   )
 }
@@ -50,7 +55,17 @@ const Header = styled.div`
 `;
 
 const Search = styled.div`
-  
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  border-radius: 2px;
+
+`;
+
+const SearchInput = styled.input`
+  outline-width: 0;
+  // border: none;
+  flex: 1;
 `;
 
 const UserAvatar = styled(Avatar)`
@@ -62,5 +77,15 @@ const UserAvatar = styled(Avatar)`
 `;
 
 const IconContainer = styled.div`
+
+`;
+
+const SidebarButton = styled(Button)`
+  width: 100%;
+  &&& {
+    // border-top: 1px solid gray;
+    // border-bottom: 1px solid gray;
+    border: 1px solid gray;
+  }
 
 `;
