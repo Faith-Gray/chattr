@@ -4,9 +4,20 @@ import styled from "styled-components";
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import SearchIcon from '@mui/icons-material/Search';
-
+import * as EmailValidator from 'email-validator';
 
 function Sidebar() {
+  const createChat = () => {
+    const input = prompt('Enter email address to sent chat invitation');
+  
+    if (!input) return null; 
+
+    if (EmailValidator.validate(input)) {
+      //add chat into the DV 'chats' collection
+    }
+  };
+
+
   return (
     <Container>
         <Header>
@@ -27,7 +38,7 @@ function Sidebar() {
           <SearchInput/>
         </Search>
 
-        <SidebarButton>
+        <SidebarButton onClick={createChat}>
           Start a New Chat
         </SidebarButton>
     </Container>
