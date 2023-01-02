@@ -1,19 +1,29 @@
-import React from 'react'
+import styled from 'styled-components';
+import Head from 'next/head';
 
 function Register() {
   return (
-    <div className="formContainer">
-        <header>Register</header>
-        <form>
+
+    <Container>
+      <Head>
+          <title>Register</title>
+      </Head>
+      <form>
             <input type='text' placeholder='Name'/>
             <input type='email' placeholder='Email'/>
             <input type='password' placeholder='Password'/>
             <input type='file'/>
             <button>Sign Up!</button>
-        </form>
-        <p>Already have an account? Login</p>
-    </div>
+      </form>
+      <p>Already have an account? Login</p>
+
+    </Container>
+
   )
 }
 
 export default Register;
+
+const Container = styled.div`
+
+`;
