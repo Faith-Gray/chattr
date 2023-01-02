@@ -2,6 +2,9 @@ import styled from 'styled-components';
 import Head from 'next/head';
 import { Button } from '@mui/material';
 import { auth, provider } from '../firebase';
+import CommentIcon from '@mui/icons-material/Comment';
+
+
 
 function Login() {
 
@@ -15,6 +18,10 @@ function Login() {
             <title>Login</title>
         </Head>
       <LoginContainer>
+
+        {/* change Logo later */}
+
+        {/* <CommentIcon/> */}
         <Logo src="http://assets.stickpng.com/images/580b57fcd9996e24bc43c543.png"/>
         <Button onClick={signIn} variant='outlined'>Sign In With Google</Button>
       </LoginContainer>
