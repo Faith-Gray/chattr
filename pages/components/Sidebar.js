@@ -4,7 +4,10 @@ import styled from "styled-components";
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import SearchIcon from '@mui/icons-material/Search';
-// import * as EmailValidator from 'email-validator';
+import { auth } from '../../firebase';
+// import EmailValidator from 'email-validator';
+
+import * as EmailValidator from 'email-validator';
 
 function Sidebar() {
   const createChat = () => {
@@ -12,17 +15,16 @@ function Sidebar() {
   
     if (!input) return null; 
 
-    // if (EmailValidator.validate(input)) {
-    //   //add chat into the DV 'chats' collection
-    // }
+    if (EmailValidator.validate(input)) {
+      //add chat into the DV 'chats' collection
+    }
   };
 
 
   return (
     <Container>
         <Header>
-
-        <UserAvatar/>
+        <UserAvatar onClick={() => auth.signOut()}/>
             <IconContainer>
                 <IconButton>
                   <ChatBubbleOutlineIcon/>
