@@ -4,19 +4,28 @@ import styled from "styled-components";
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import SearchIcon from '@mui/icons-material/Search';
-import { auth } from '../../firebase';
+import { auth, db } from '../../firebase';
+import { useAuthState } from "react-firebase-hooks/auth";
 // import EmailValidator from 'email-validator';
 
-import * as EmailValidator from 'email-validator';
+// import * as EmailValidator from 'email-validator';
 
 function Sidebar() {
+  const [user] = useAuthState(auth);
+
   const createChat = () => {
-    const input = prompt('Enter email address to sent chat invitation');
+    const input = prompt('Enter email address to send chat invitation');
   
     if (!input) return null; 
 
-    if (EmailValidator.validate(input)) {
-      //add chat into the DV 'chats' collection
+    // if (EmailValidator.validate(input)) {
+    //   //add chat into the DV 'chats' collection
+    // }
+
+    if (input) {
+        db.collection('chats').add({
+          users: [user.email, input],
+        });
     }
   };
 
