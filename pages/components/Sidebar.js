@@ -7,6 +7,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { auth, db } from '../../firebase';
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollection } from 'react-firebase-hooks/firestore';
+import ChatListing from "./ChatListing";
 // import EmailValidator from 'email-validator';
 
 // import * as EmailValidator from 'email-validator';
@@ -62,6 +63,10 @@ function Sidebar() {
         <SidebarButton onClick={createChat}>
           Start a New Chat
         </SidebarButton>
+
+        {chatsSnapshot?.docs.map((chat) => (
+          <ChatListing key={chat.id} id={chat.id} user={chat.data().users} />
+        ))}
     </Container>
   )
 }
