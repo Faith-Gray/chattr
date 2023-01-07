@@ -2,20 +2,33 @@ import styled from "styled-components";
 import { Avatar } from '@mui/material';
 import getRecipientEmail from '../../utils/getRecipientEmail';
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from '../../firebase';
+import { auth, db } from '../../firebase';
+import { useCollection } from "react-firebase-hooks/firestore";
+
 
 
 function ChatListing( {id, users}) {
  
   const [user] = useAuthState(auth);
+  const [recipientPic] = useCollection(db.collection('users').where('email', '===', getRecipientEmail(users, user)));
 
   const recipientEmail = getRecipientEmail( users, user);
+  const recipient = recipientPic?.docs?.[0]?.data();
+
 
   console.log(id, users);
 
   return (
     <Container>
-      <UserAvatar />
+      {/* if there is a recipient load the photo for the recipient as user Avatar 
+      else use the first letter of recipient*/}
+      {recipient ? (
+          <UserAvatar src = {recipient?.photoURL} />
+        ) : (
+          <UserAvatar>{recipientEmail[0]}</UserAvatar>
+        )
+      }
+      {/* <UserAvatar /> */}
       <p>{recipientEmail}</p>
     </Container> 
   )
