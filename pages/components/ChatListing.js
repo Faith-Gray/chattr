@@ -10,7 +10,7 @@ import { useCollection } from "react-firebase-hooks/firestore";
 function ChatListing( {id, users}) {
  
   const [user] = useAuthState(auth);
-  const [recipientPic] = useCollection(db.collection('users').where('email', '===', getRecipientEmail(users, user)));
+  const [recipientPic] = useCollection(db.collection('users').where('email', '==', getRecipientEmail(users, user)));
 
   const recipientEmail = getRecipientEmail( users, user);
   const recipient = recipientPic?.docs?.[0]?.data();
