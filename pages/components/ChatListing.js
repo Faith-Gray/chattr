@@ -1,12 +1,22 @@
 import styled from "styled-components";
 import { Avatar } from '@mui/material';
+import getRecipientEmail from '../../utils/getRecipientEmail';
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from '../../firebase';
 
 
-function ChatListing( id, users) {
+function ChatListing( {id, users}) {
+ 
+  const [user] = useAuthState(auth);
+
+  const recipientEmail = getRecipientEmail( users, user);
+
+  console.log(id, users);
+
   return (
     <Container>
       <UserAvatar />
-      <p>Chat Emails</p>
+      <p>{recipientEmail}</p>
     </Container> 
   )
 }
@@ -18,6 +28,11 @@ const Container = styled.div`
   align-items: center;
   cursor: pointer;
   padding: 15px;
+  word-break: break-word;
+
+  :hover {
+    background-color: gray;
+  }
 `;
 
 const UserAvatar = styled(Avatar)`
